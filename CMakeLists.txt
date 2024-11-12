@@ -15,11 +15,11 @@ set(ADDITIONAL_LIBRARIES Qt6::Quick plugin)
 
 
 #subfolders
-add_subdirectory(Source)
+add_subdirectory(src)
 
 #QML files
-set(QML_FILES QMLDir/Main.qml)
-set(CPP_QML_FILES Source/test.h)
+set(QML_FILES qml/Main.qml)
+set(CPP_QML_FILES src/test.h)
 
 #----------------------------------------------------#
 
