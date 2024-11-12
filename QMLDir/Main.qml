@@ -139,7 +139,6 @@ Window {
         onClicked: {
 
                     console.log("Saving to file path:", test.mData);
-
                     imageCapture.captureToFile(test.mData);
 
         }
