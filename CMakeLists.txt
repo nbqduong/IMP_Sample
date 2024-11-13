@@ -11,15 +11,22 @@ set(CMAKE_PREFIX_PATH "/home/duong/Qt/6.7.2/gcc_64")
 
 #Aditional pakage and libraries
 set(ADDITIONAL_PAKAGES Quick)
-set(ADDITIONAL_LIBRARIES Qt6::Quick plugin)
+set(ADDITIONAL_LIBRARIES Qt6::Quick backend)
 
 
 #subfolders
 add_subdirectory(src)
 
 #QML files
-set(QML_FILES qml/Main.qml)
-set(CPP_QML_FILES src/test.h)
+set(QML_FILES
+        qml/Main.qml
+        qml/CameraView.qml
+        qml/PhotoView.qml
+)
+set(CPP_QML_FILES
+        src/interface.h
+        src/filter.h
+    )
 
 #----------------------------------------------------#
 

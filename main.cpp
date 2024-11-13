@@ -1,7 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include "test2.h"
-#include "test.h"
+#include "interface.h"
 #include  <QQmlContext>
 #include <QDir>
 // #include <opencv2/opencv.hpp>
@@ -12,8 +11,8 @@ int main(int argc, char *argv[])
 {
     qDebug() << "Current working directory:" << QDir::currentPath();
     //Register a type in QML
-    qmlRegisterType<Test>("com.company.test",1,0,"Test");
-    bark();
+    qmlRegisterType<InterFace>("com.company.interface",1,0,"Interface");
+
 
     QGuiApplication app(argc, argv);
 

@@ -1,24 +1,27 @@
 #-------------------DEFINE ZONE----------------------#
 #this library
-set(LIBRARY_NAME "plugin")
+set(LIBRARY_NAME "backend")
 set(LIBRARY_INCLUDES "./" "${CMAKE_BINARY_DIR}/configured_files/include")
 
 set(LIBRARY_SOURCES
-        test.cpp
+        interface.cpp
+        filter.cpp
 )
 set(LIBRARY_HEADERS
-        test.h
-        test2.h
-
+        interface.h
+        filter.h
+        database.h
 )
 # Global CMake variables are set here
 set(CMAKE_PREFIX_PATH "/home/duong/Qt/6.7.2/gcc_64")
 
 #Aditional pakage
 find_package(Qt6 6.2 REQUIRED COMPONENTS Quick)
+find_package( OpenCV REQUIRED )
 
-#include more
-set(LIBRARIES_TO_LINK Qt6::Quick)
+#include and link more
+include_directories( ${OpenCV_INCLUDE_DIRS} )
+set(LIBRARIES_TO_LINK Qt6::Quick ${OpenCV_LIBS})
 #----------------------------------------------------#
 
 add_library(${LIBRARY_NAME} STATIC ${LIBRARY_SOURCES} ${LIBRARY_HEADERS})
@@ -47,10 +50,3 @@ if(${ENABLE_CLANG_TIDY})
     add_clang_tidy_to_target(${LIBRARY_NAME})
 endif()
 
-# qt_add_qml_module(${LIBRARY_NAME}
-#     URI learnQT111
-#     VERSION 1.0
-#     QML_FILES
-#         SOURCES test.h test.cpp
-
-# )
