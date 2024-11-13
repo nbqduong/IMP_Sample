@@ -5,8 +5,8 @@ import QtQuick.Controls 2.15
 import com.company.interface 1.0
 Item {
     visible: true
-    width: 640
-    height: 450
+    width: 1920
+    height: 980
     anchors.top: parent.top
     anchors.horizontalCenter: parent.horizontalCenter
 
@@ -20,15 +20,15 @@ Item {
         source: "file:///" + myInterface.getAppPath() + "image.jpg"  // Path to your image file
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
-        width: 640
-        height: 400
+        width: 1920
+        height: 980
         fillMode: Image.PreserveAspectFit  // Preserve aspect ratio
     }
 
     Button {
         text: "Gray filter"
         anchors.bottom: parent.bottom
-        x: 100
+        x: 1000
         onClicked: {
             myInterface.grayFilter();
             myImage.source = "file:///" + myInterface.getAppPath() + "grayscale_image.jpg"
@@ -37,7 +37,7 @@ Item {
     Button {
         text: "Edge filter"
         anchors.bottom: parent.bottom
-        x:300
+        x:900
         onClicked: {
             myInterface.edgeFilter();
             myImage.source = "file:///" + myInterface.getAppPath() + "edge_image.jpg"

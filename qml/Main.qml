@@ -6,8 +6,8 @@ import com.company.interface 1.0
 
 Window {
     id: cameraUI
-    width: 800
-    height: 480
+    width: 1920
+    height: 1080
     color: "black"
     visible: true
 

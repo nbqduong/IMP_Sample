@@ -5,9 +5,10 @@ import QtQuick.Controls 2.15
 import com.company.interface 1.0
 Item {
     id: cameraUI
-        width: 800
-        height: 450
-        visible: true
+    anchors.horizontalCenter: parent.horizontalCenter
+    width: 1920
+    height: 980
+    visible: true
 
 
         property string platformScreen: ""
