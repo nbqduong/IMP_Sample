@@ -11,35 +11,33 @@ Window {
     color: "black"
     visible: true
 
-    property bool viewMode : true
+    property int viewMode : 0
 
 
-    StackView {
-            id: stackView
-            initialItem: "CameraView.qml"
+    Loader {
+            id: viewLoader
             anchors.fill: parent
+            source: "CameraView.qml"  // Initial view
         }
 
-    // Select view
-    Button {
-        text: "View Photo"
-        anchors.bottom: parent.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
-        onClicked: {
-            if(viewMode){
-                stackView.push("PhotoView.qml")
-                viewMode = !viewMode
-                text = "View Camera"
+    // Select view buttons
+        Button {
+            id: button
+            text: "View Camera"
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            onClicked: {
+                if (viewMode !== 0) {
+                    button.text = "View Photo"
+                    viewLoader.source = "CameraView.qml"
+                    viewMode = 0
+                }
+                else{
+                    button.text = "View Camera"
+                    viewLoader.source = "PhotoView.qml"
+                    viewMode = 1
+                }
             }
-            else{
-                stackView.pop()
-                viewMode = !viewMode
-                text = "View Photo"
-            }
-
-
-
         }
-    }
 
 }

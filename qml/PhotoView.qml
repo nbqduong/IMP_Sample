@@ -6,8 +6,7 @@ import com.company.interface 1.0
 Item {
     visible: true
     width: 1920
-    height: 980
-    anchors.top: parent.top
+    height: 920
     anchors.horizontalCenter: parent.horizontalCenter
 
     Interface{
@@ -27,7 +26,7 @@ Item {
 
     Button {
         text: "Gray filter"
-        anchors.bottom: parent.bottom
+        anchors.top: parent.top
         x: 1000
         onClicked: {
             myInterface.grayFilter();
@@ -36,7 +35,7 @@ Item {
     }
     Button {
         text: "Edge filter"
-        anchors.bottom: parent.bottom
+        anchors.top: parent.top
         x:900
         onClicked: {
             myInterface.edgeFilter();

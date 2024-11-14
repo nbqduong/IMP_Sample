@@ -7,14 +7,15 @@ Item {
     id: cameraUI
     anchors.horizontalCenter: parent.horizontalCenter
     width: 1920
-    height: 980
+    height: 920
     visible: true
 
 
-        property string platformScreen: ""
-        property int buttonsPanelLandscapeWidth: 328
-        property int buttonsPanelPortraitHeight: 180
-        property string currentState: "PhotoCapture" // Initial state
+    property string platformScreen: ""
+    property int buttonsPanelLandscapeWidth: 328
+    property int buttonsPanelPortraitHeight: 180
+    property string currentState: "PhotoCapture" // Initial state
+    property bool realTimeMode: false
 
 
         Interface{
@@ -83,7 +84,7 @@ Item {
 
         Button {
             text: "Capture Image"
-            anchors.bottom: parent.bottom
+            anchors.top: parent.top
             anchors.horizontalCenter: parent.horizontalCenter
             onClicked: {
                 var image_path = myInterface.getAppPath() +"image.jpg";
@@ -95,4 +96,69 @@ Item {
                 ;
             }
         }
+
+        Button {
+            id: filterButton
+            text: "Realtime Edge Filter"
+            anchors.top: parent.top
+            x:600
+            onClicked: {
+                if(realTimeMode === false){
+                    filterButton.text = "Normal camera"
+                    filterF();
+                    viewfinder.visible = false;
+                    myImage.visible = true;
+                    myTimer2.start();
+                    myTimer2.repeat = true;
+                }else{
+                    filterButton.text = "Realtime Edge Filter"
+                    viewfinder.visible = true;
+                    myImage.visible = false;
+                    myTimer2.stop();
+                    myTimer2.repeat = false;
+                }
+                realTimeMode = !realTimeMode;
+
+            }
+        }
+
+        Timer {
+            id: myTimer2
+            interval: 100  // Time in milliseconds (2000 ms = 2 seconds)
+            running: false   // Start the timer automatically when the app loads
+            repeat: false  // Trigger the function only once
+            onTriggered: {
+                filterF();  // Call the function when the timer triggers
+            }
+        }
+
+
+        // Image element to show an image from a local file
+        Image {
+            id: myImage
+            visible: false
+            source: "file:///" + myInterface.getAppPath() + "edge_image.jpg"  // Path to your image file
+            y: 30
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: 1920
+            height: 980
+            fillMode: Image.PreserveAspectFit  // Preserve aspect ratio
+        }
+
+        function filterF(){
+
+            var image_path = myInterface.getAppPath() +"image.jpg";
+            var edge_image_path = myInterface.getAppPath() +"edge_image.jpg";
+
+            console.log("Saving to file path:", image_path );
+            imageCapture.captureToFile(image_path);
+            delay(50, function() {
+                        myInterface.setImage2Filter(image_path);
+                        myInterface.edgeFilter();
+                        myImage.source = "";
+                        myImage.source = "file:///" + edge_image_path;
+                    });
+        }
+
+
 }

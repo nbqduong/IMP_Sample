@@ -22,10 +22,11 @@ set(QML_FILES
         qml/Main.qml
         qml/CameraView.qml
         qml/PhotoView.qml
+
 )
 set(CPP_QML_FILES
         src/interface.h
-        src/filter.h
+        # src/filter.h
     )
 
 #----------------------------------------------------#
